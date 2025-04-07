@@ -1,4 +1,4 @@
-const cacheName = 'fiszki-srs';
+const cacheName = 'fiszki-srs-v2';
 const filesToCache = ['./', './index.html', './manifest.json', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(cacheName).then((cache) => cache.addAll(filesToCache)));
