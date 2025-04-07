@@ -1,61 +1,28 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fiszki PL-ENG z systemem powtórek</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#ffffff">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiszki SRS</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffffff" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="Fiszki">
+  <meta name="apple-mobile-web-app-title" content="Fiszki SRS">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <link rel="apple-touch-icon" href="icon-192.png">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f4f4;
-      padding: 20px;
-      max-width: 700px;
-      margin: auto;
-    }
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .word {
-      font-size: 24px;
-      margin-bottom: 10px;
-    }
-    .example, .translation {
-      font-size: 16px;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    .image {
-      max-width: 100%;
-      height: 150px;
-      object-fit: contain;
-      margin-bottom: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-    .level-indicator {
-      margin-top: 10px;
-      font-size: 14px;
-      color: gray;
-    }
+    body { font-family: Arial; background: #f4f4f4; padding: 20px; max-width: 700px; margin: auto; }
+    .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); text-align: center; }
+    .word { font-size: 24px; margin-bottom: 10px; }
+    .example, .translation { font-size: 16px; color: #555; margin-bottom: 10px; }
+    .image { max-width: 100%; height: 150px; object-fit: contain; margin-bottom: 20px; }
+    button { padding: 10px 20px; margin: 5px; font-size: 16px; cursor: pointer; }
+    .level-indicator { margin-top: 10px; font-size: 14px; color: gray; }
   </style>
 </head>
 <body>
   <div class="card">
-    <div class="word" id="word">Kliknij "Start" aby rozpocząć</div>
+    <div class="word" id="word">Kliknij "Start"</div>
     <div class="example" id="example"></div>
     <div class="translation" id="translation"></div>
     <img class="image" id="image" src="" alt="">
@@ -64,90 +31,111 @@
     <button onclick="showWord('eng')">ENG</button>
     <button onclick="showTranslation()">Tłumaczenie zdania</button>
     <button onclick="playAudio()">🔊</button>
-    <button onclick="nextWord()">Następne</button>
-    <br>
+    <button onclick="nextWord()">Następne</button><br>
     <button onclick="markKnown()">Znam to</button>
     <button onclick="markUnknown()">Nie znam</button>
   </div>
-
   <script>
-    const words = [
-      ["efektywność energetyczna", "energy efficiency", "https://cdn-icons-png.flaticon.com/512/1647/1647545.png", "Energy efficiency helps reduce energy bills and emissions.", "Efektywność energetyczna pomaga zmniejszyć rachunki za energię i emisje."],
-      ["koszty mieszkaniowe", "housing costs", "https://cdn-icons-png.flaticon.com/512/3135/3135715.png", "Many people are struggling with high housing costs.", "Wiele osób zmaga się z wysokimi kosztami mieszkaniowymi."],
-      ["dostawcy usług", "service providers", "https://cdn-icons-png.flaticon.com/512/5997/5997762.png", "The platform connects users with trusted service providers.", "Platforma łączy użytkowników z zaufanymi dostawcami usług."],
-      ["modernizacja energetyczna", "energy retrofit", "https://cdn-icons-png.flaticon.com/512/2972/2972435.png", "An energy retrofit improves your home's insulation and heating.", "Modernizacja energetyczna poprawia izolację i ogrzewanie domu."],
-      ["klasa energetyczna", "energy class (EPC)", "https://cdn-icons-png.flaticon.com/512/1146/1146869.png", "The house has an energy class B on the EPC scale.", "Dom ma klasę energetyczną B w skali EPC."],
-      ["zużycie energii", "energy consumption", "https://cdn-icons-png.flaticon.com/512/1046/1046857.png", "You can lower energy consumption by using LED lights.", "Możesz zmniejszyć zużycie energii, używając żarówek LED."],
-      ["próg rentowności", "break-even point", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "We reached the break-even point after two years of operation.", "Osiągnęliśmy próg rentowności po dwóch latach działalności."],
-      ["ślad węglowy", "carbon footprint", "https://cdn-icons-png.flaticon.com/512/2907/2907253.png", "Flying less can help reduce your carbon footprint.", "Mniej latania może pomóc zmniejszyć twój ślad węglowy."],
-      ["symulacja", "simulation", "https://cdn-icons-png.flaticon.com/512/3489/3489462.png", "This tool provides a simulation of energy savings.", "To narzędzie oferuje symulację oszczędności energii."],
-      ["rozwiązanie white-label", "white-label solution", "https://cdn-icons-png.flaticon.com/512/2921/2921822.png", "We offer a white-label solution for banks.", "Oferujemy rozwiązanie typu white-label dla banków."]
-    ];
+    
+const words = [
+  ["efektywność energetyczna", "energy efficiency", "https://cdn-icons-png.flaticon.com/512/1647/1647545.png",
+   "Energy efficiency helps reduce energy bills and emissions.",
+   "Efektywność energetyczna pomaga zmniejszyć rachunki za energię i emisje."]
+];
 
-    let current = -1;
-    let learningState = new Array(words.length).fill(0);
+    
+let learningState = words.map(() => ({
+  level: 0,
+  lastReviewed: null
+}));
 
-    function nextWord() {
-      let available = words.map((_, i) => i).filter(i => learningState[i] < 2);
-      if (available.length === 0) {
-        document.getElementById("word").innerText = "Wszystkie słowa opanowane!";
-        document.getElementById("image").src = "";
-        document.getElementById("example").innerText = "";
-        document.getElementById("translation").innerText = "";
-        document.getElementById("level").innerText = "Gratulacje!";
-        return;
-      }
-      current = available[Math.floor(Math.random() * available.length)];
-      document.getElementById("word").innerText = "?";
-      document.getElementById("image").src = words[current][2];
-      document.getElementById("example").innerText = "";
-      document.getElementById("translation").innerText = "";
-      document.getElementById("level").innerText = `Poziom zapamiętania: ${learningState[current] === 0 ? "Nowe" : "Poznane"}`;
+function daysSince(dateString) {
+  if (!dateString) return Infinity;
+  const oneDay = 24 * 60 * 60 * 1000;
+  const now = new Date();
+  const then = new Date(dateString);
+  return Math.floor((now - then) / oneDay);
+}
+
+function getInterval(level) {
+  return [0, 1, 3, 7, 14][level] || 30;
+}
+
+function nextWord() {
+  const today = new Date().toISOString().split("T")[0];
+  let candidates = [];
+
+  for (let i = 0; i < words.length; i++) {
+    const state = learningState[i];
+    const interval = getInterval(state.level);
+    if (daysSince(state.lastReviewed) >= interval) {
+      candidates.push(i);
     }
+  }
 
-    function showWord(lang) {
-      if (current >= 0) {
-        document.getElementById("word").innerText = lang === 'pl' ? words[current][0] : words[current][1];
-        document.getElementById("example").innerText = lang === 'eng' ? words[current][3] : "";
-        document.getElementById("translation").innerText = "";
-      }
-    }
+  if (candidates.length === 0) {
+    document.getElementById("word").innerText = "Brak słów do powtórki!";
+    document.getElementById("image").src = "";
+    document.getElementById("example").innerText = "";
+    document.getElementById("translation").innerText = "";
+    document.getElementById("level").innerText = "Gratulacje!";
+    return;
+  }
 
-    function showTranslation() {
-      if (current >= 0) {
-        document.getElementById("translation").innerText = words[current][4];
-      }
-    }
+  current = candidates[Math.floor(Math.random() * candidates.length)];
+  document.getElementById("word").innerText = "?";
+  document.getElementById("image").src = words[current][2];
+  document.getElementById("example").innerText = "";
+  document.getElementById("translation").innerText = "";
+  document.getElementById("level").innerText = `Poziom: ${learningState[current].level}`;
+}
 
-    function markKnown() {
-      if (current >= 0 && learningState[current] < 2) {
-        learningState[current]++;
-        nextWord();
-      }
-    }
+function showWord(lang) {
+  if (current >= 0) {
+    document.getElementById("word").innerText = lang === 'pl' ? words[current][0] : words[current][1];
+    document.getElementById("example").innerText = lang === 'eng' ? words[current][3] : "";
+    document.getElementById("translation").innerText = "";
+  }
+}
 
-    function markUnknown() {
-      if (current >= 0) {
-        learningState[current] = 0;
-        nextWord();
-      }
-    }
+function showTranslation() {
+  if (current >= 0) {
+    document.getElementById("translation").innerText = words[current][4];
+  }
+}
 
-    function playAudio() {
-      if (current >= 0) {
-        const utterance = new SpeechSynthesisUtterance(words[current][1]);
-        utterance.lang = 'en-US';
-        speechSynthesis.speak(utterance);
-      }
-    }
+function markKnown() {
+  if (current >= 0) {
+    let state = learningState[current];
+    if (state.level < 5) state.level++;
+    state.lastReviewed = new Date().toISOString().split("T")[0];
+    nextWord();
+  }
+}
 
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(reg => console.log('SW zarejestrowany:', reg))
-          .catch(err => console.error('Błąd SW:', err));
-      });
-    }
+function markUnknown() {
+  if (current >= 0) {
+    learningState[current] = { level: 0, lastReviewed: new Date().toISOString().split("T")[0] };
+    nextWord();
+  }
+}
+
+function playAudio() {
+  if (current >= 0) {
+    const utterance = new SpeechSynthesisUtterance(words[current][1]);
+    utterance.lang = 'en-US';
+    speechSynthesis.speak(utterance);
+  }
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js')
+      .then(reg => console.log('SW zarejestrowany:', reg))
+      .catch(err => console.error('Błąd SW:', err));
+  });
+}
+
   </script>
 </body>
 </html>
