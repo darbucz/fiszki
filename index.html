@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fiszki SRS</title>
-  <link rel="manifest" href="manifest.json" />
-  <meta name="theme-color" content="#ffffff" />
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ffffff">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Fiszki SRS">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -36,106 +36,195 @@
     <button onclick="markUnknown()">Nie znam</button>
   </div>
   <script>
-    
-const words = [
-  ["efektywność energetyczna", "energy efficiency", "https://cdn-icons-png.flaticon.com/512/1647/1647545.png",
-   "Energy efficiency helps reduce energy bills and emissions.",
-   "Efektywność energetyczna pomaga zmniejszyć rachunki za energię i emisje."]
+    const words = [
+  ["energetyka odnawialna", "renewable energy", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["energia słoneczna", "solar energy", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["energia wiatrowa", "wind energy", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["energia wodna", "hydropower", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["panel słoneczny", "solar panel", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["farma wiatrowa", "wind farm", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["emisje CO2", "CO2 emissions", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["oszczędność energii", "energy saving", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["efektywność cieplna", "thermal efficiency", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["pompa ciepła", "heat pump", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["termomodernizacja", "thermal modernization", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["ocieplenie budynku", "building insulation", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["inteligentny licznik", "smart meter", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["gospodarstwo domowe", "household", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["rachunek za prąd", "electricity bill", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["źródło energii", "energy source", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["bilans energetyczny", "energy balance", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["sieć energetyczna", "power grid", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["magazynowanie energii", "energy storage", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["akumulator", "battery", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["ładowarka", "charger", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zużycie prądu", "electricity usage", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["instalacja fotowoltaiczna", "photovoltaic installation", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["program dopłat", "subsidy program", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["fundusz ekologiczny", "eco fund", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["audyt energetyczny", "energy audit", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["wentylacja", "ventilation", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["rekuperacja", "heat recovery", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["emisja spalin", "exhaust emissions", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["segregacja odpadów", "waste sorting", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["recykling", "recycling", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["kompostowanie", "composting", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["węgiel", "coal", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["gaz ziemny", "natural gas", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["energia jądrowa", "nuclear energy", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["energia geotermalna", "geothermal energy", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zmiana klimatu", "climate change", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["globalne ocieplenie", "global warming", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zielony ład", "green deal", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["transport publiczny", "public transport", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["autobus elektryczny", "electric bus", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["samochód hybrydowy", "hybrid car", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["ładowarka samochodowa", "car charger", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["miejski rower", "city bike", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["plan zagospodarowania", "zoning plan", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zrównoważony rozwój", "sustainable development", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["modernizacja budynku", "building retrofit", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["koszty eksploatacji", "operating costs", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["lokalizacja", "location", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["nieruchomość", "property", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["kredyt hipoteczny", "mortgage loan", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["wkład własny", "down payment", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["oprocentowanie", "interest rate", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["kredytobiorca", "borrower", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["raty miesięczne", "monthly installments", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zdolność kredytowa", "creditworthiness", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["umowa najmu", "rental agreement", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["czynsz", "rent", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["opłaty eksploatacyjne", "utilities", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["koszty ogrzewania", "heating costs", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zarządzanie nieruchomością", "property management", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["remont", "renovation", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["adaptacja poddasza", "attic adaptation", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zielony dach", "green roof", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["nowe budownictwo", "new construction", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["infrastruktura", "infrastructure", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["efektywność budynku", "building efficiency", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["okna energooszczędne", "energy-efficient windows", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["klasa zużycia energii", "energy rating", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["świadectwo energetyczne", "energy certificate", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["projekt budowlany", "building design", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["neutralność klimatyczna", "climate neutrality", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["offset węglowy", "carbon offset", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["ślad ekologiczny", "ecological footprint", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["certyfikat LEED", "LEED certificate", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["materiały z recyklingu", "recycled materials", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["emisyjność", "emissions level", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["bilans cieplny", "heat balance", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["system grzewczy", "heating system", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["kotłownia", "boiler room", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["pompa obiegowa", "circulation pump", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["dofinansowanie", "financial support", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["ochrona środowiska", "environmental protection", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["teren zielony", "green area", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["gospodarka wodna", "water management", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["oszczędność wody", "water saving", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["deszczówka", "rainwater", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zbiornik retencyjny", "retention tank", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zagospodarowanie przestrzenne", "spatial planning", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["miasto przyszłości", "city of the future", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["budownictwo pasywne", "passive housing", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["energia pierwotna", "primary energy", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["system zarządzania energią", "energy management system", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zielone inwestycje", "green investments", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["zielone obligacje", "green bonds", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["audyt finansowy", "financial audit", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
+  ["opłacalność inwestycji", "investment profitability", "https://cdn-icons-png.flaticon.com/512/2910/2910791.png", "This term is related to energy and sustainability.", "To pojęcie związane jest z energią i zrównoważonym rozwojem."],
 ];
 
-    
-let learningState = words.map(() => ({
-  level: 0,
-  lastReviewed: null
-}));
+    let current = -1;
+    let learningState = words.map(() => ({ level: 0, lastReviewed: null }));
 
-function daysSince(dateString) {
-  if (!dateString) return Infinity;
-  const oneDay = 24 * 60 * 60 * 1000;
-  const now = new Date();
-  const then = new Date(dateString);
-  return Math.floor((now - then) / oneDay);
-}
-
-function getInterval(level) {
-  return [0, 1, 3, 7, 14][level] || 30;
-}
-
-function nextWord() {
-  const today = new Date().toISOString().split("T")[0];
-  let candidates = [];
-
-  for (let i = 0; i < words.length; i++) {
-    const state = learningState[i];
-    const interval = getInterval(state.level);
-    if (daysSince(state.lastReviewed) >= interval) {
-      candidates.push(i);
+    function daysSince(dateString) {
+      if (!dateString) return Infinity;
+      const oneDay = 24 * 60 * 60 * 1000;
+      const now = new Date();
+      const then = new Date(dateString);
+      return Math.floor((now - then) / oneDay);
     }
-  }
 
-  if (candidates.length === 0) {
-    document.getElementById("word").innerText = "Brak słów do powtórki!";
-    document.getElementById("image").src = "";
-    document.getElementById("example").innerText = "";
-    document.getElementById("translation").innerText = "";
-    document.getElementById("level").innerText = "Gratulacje!";
-    return;
-  }
+    function getInterval(level) {
+      return [0, 1, 3, 7, 14][level] || 30;
+    }
 
-  current = candidates[Math.floor(Math.random() * candidates.length)];
-  document.getElementById("word").innerText = "?";
-  document.getElementById("image").src = words[current][2];
-  document.getElementById("example").innerText = "";
-  document.getElementById("translation").innerText = "";
-  document.getElementById("level").innerText = `Poziom: ${learningState[current].level}`;
-}
+    function nextWord() {
+      const today = new Date().toISOString().split("T")[0];
+      let candidates = [];
 
-function showWord(lang) {
-  if (current >= 0) {
-    document.getElementById("word").innerText = lang === 'pl' ? words[current][0] : words[current][1];
-    document.getElementById("example").innerText = lang === 'eng' ? words[current][3] : "";
-    document.getElementById("translation").innerText = "";
-  }
-}
+      for (let i = 0; i < words.length; i++) {
+        const state = learningState[i];
+        const interval = getInterval(state.level);
+        if (daysSince(state.lastReviewed) >= interval) {
+          candidates.push(i);
+        }
+      }
 
-function showTranslation() {
-  if (current >= 0) {
-    document.getElementById("translation").innerText = words[current][4];
-  }
-}
+      if (candidates.length === 0) {
+        document.getElementById("word").innerText = "Brak słów do powtórki!";
+        document.getElementById("image").src = "";
+        document.getElementById("example").innerText = "";
+        document.getElementById("translation").innerText = "";
+        document.getElementById("level").innerText = "Gratulacje!";
+        return;
+      }
 
-function markKnown() {
-  if (current >= 0) {
-    let state = learningState[current];
-    if (state.level < 5) state.level++;
-    state.lastReviewed = new Date().toISOString().split("T")[0];
-    nextWord();
-  }
-}
+      current = candidates[Math.floor(Math.random() * candidates.length)];
+      document.getElementById("word").innerText = "?";
+      document.getElementById("image").src = words[current][2];
+      document.getElementById("example").innerText = "";
+      document.getElementById("translation").innerText = "";
+      document.getElementById("level").innerText = `Poziom: ${learningState[current].level}`;
+    }
 
-function markUnknown() {
-  if (current >= 0) {
-    learningState[current] = { level: 0, lastReviewed: new Date().toISOString().split("T")[0] };
-    nextWord();
-  }
-}
+    function showWord(lang) {
+      if (current >= 0) {
+        document.getElementById("word").innerText = lang === 'pl' ? words[current][0] : words[current][1];
+        document.getElementById("example").innerText = lang === 'eng' ? words[current][3] : "";
+        document.getElementById("translation").innerText = "";
+      }
+    }
 
-function playAudio() {
-  if (current >= 0) {
-    const utterance = new SpeechSynthesisUtterance(words[current][1]);
-    utterance.lang = 'en-US';
-    speechSynthesis.speak(utterance);
-  }
-}
+    function showTranslation() {
+      if (current >= 0) {
+        document.getElementById("translation").innerText = words[current][4];
+      }
+    }
 
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('service-worker.js')
-      .then(reg => console.log('SW zarejestrowany:', reg))
-      .catch(err => console.error('Błąd SW:', err));
-  });
-}
+    function markKnown() {
+      if (current >= 0) {
+        let state = learningState[current];
+        if (state.level < 5) state.level++;
+        state.lastReviewed = new Date().toISOString().split("T")[0];
+        nextWord();
+      }
+    }
 
+    function markUnknown() {
+      if (current >= 0) {
+        learningState[current] = { level: 0, lastReviewed: new Date().toISOString().split("T")[0] };
+        nextWord();
+      }
+    }
+
+    function playAudio() {
+      if (current >= 0) {
+        const utterance = new SpeechSynthesisUtterance(words[current][1]);
+        utterance.lang = 'en-US';
+        speechSynthesis.speak(utterance);
+      }
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('SW zarejestrowany:', reg))
+          .catch(err => console.error('Błąd SW:', err));
+      });
+    }
   </script>
 </body>
 </html>
