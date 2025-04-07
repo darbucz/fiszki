@@ -276,7 +276,8 @@
       }
 
       current = candidates[Math.floor(Math.random() * candidates.length)];
-      document.getElementById("word").innerText = "?";
+      document.getElementById("word").innerText = words[current][1];
+      document.getElementById("example").innerText = words[current][3];
       document.getElementById("image").src = words[current][2];
       document.getElementById("example").innerText = "";
       document.getElementById("translation").innerText = "";
